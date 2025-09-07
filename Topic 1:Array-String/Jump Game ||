@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int dpp( vector<int>&arr , int i , vector<int>&dp , int n )
+    {
+        if(i == n -1)
+        {
+            return 0;
+        }
+        if(i >= n)
+        {
+            return 1e9;
+        }
+        if(dp [ i ] !=-1)
+        {
+            return dp[i];
+        }
+        int mini =1e9;
+        for(int j = 1; j <= arr[i] ; j++)
+        {
+            if(i+j<n){
+            mini=min(mini , 1+dpp(arr,i+j , dp , n));
+            }
+        }
+        return dp[i]=mini;
+    }
+    int jump(vector<int>& nums) {
+         vector<int>dp(nums.size()+1 , -1);
+               return dpp(nums,0 ,dp,nums.size());
+                     
+    }
+};
+
+  
