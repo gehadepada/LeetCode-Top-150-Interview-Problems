@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
+        int mx=0;
+        for(int i = citations.size() ;i >=0 ;i--)
+        {
+            int res=0;
+            
+            for(int j = 0; j <citations.size() ; j++)
+            {
+                if(citations[j] >=i)
+                {
+                    res++;
+                }
+            }
+            if( res>=i ){
+            mx=max(mx,i);
+            }
+        
+        }
+        return  mx;
+    }
+};
