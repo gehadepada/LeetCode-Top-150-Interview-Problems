@@ -26,4 +26,4 @@ https://leetcode.com/studyplan/top-interview-150/
 | Rotate Array | ✅ |
 | Zigzag Conversion | ✅ |
 
-**Total Completed:** 21/21 problems ✅
+**Total Completed:** 21/24 problems ✅
