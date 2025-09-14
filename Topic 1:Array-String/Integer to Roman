@@ -1,0 +1,68 @@
+class Solution {
+public:
+    string intToRoman(int num) {
+        map<int ,pair<string,string>>m;
+        m[3].first="CM";m[2].first="XC";m[1].first="IX";
+        m[3].second="CD";m[2].second="XL";m[1].second="IV";
+        vector<int>nums;
+        nums.push_back(1000); nums.push_back(500); nums.push_back(100);
+        nums.push_back(50); nums.push_back(10); nums.push_back(5);
+        nums.push_back(1);
+        map<int,char>chars;
+        chars[1000]='M'; chars[500]='D'; chars[100]='C';
+        chars[50]='L'; chars[10]='X'; chars[5]='V'; chars[1]='I';
+        string numm=to_string(num);
+        string res="";
+        int i = 0; 
+        while(numm.size()>0)
+        {
+            if( numm [ i ]== '4')
+            {
+                res+=m[numm.size()].second;
+                numm.erase(0,1);
+            }
+            else if( numm [ i ]== '9')
+            {
+                res+=m[numm.size()].first;
+                 numm.erase(0,1);
+            }
+            else{
+                if(numm[i]=='0')
+                {
+                    numm.erase(0,1);
+                    continue;
+                }
+                int div= 0;
+                int num= stoi(numm);
+                int flag=0;
+                for(auto x : nums)
+                {
+                    div=num/x;
+                    if(div!=0)
+                    {
+                        num-=(div*x);
+                       while(div--)
+                       {
+                        res.push_back(chars[x]);
+                       }
+                       flag=1;
+
+                    }
+                    if(flag==1)
+                    {
+                        numm=to_string(num);
+                        cout<<"nn"<<numm<<endl;
+                        break;
+                    }
+
+                }
+                if(num==0)
+                {
+                    break;
+                }
+
+            }
+        }
+        return res;
+    }
+};
