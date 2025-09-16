@@ -1,0 +1,37 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        vector<int>res;
+        map<int,int>mp;
+        multimap<int,int>m;
+       for(int i =0; i < numbers.size() ; i++)
+        {
+            mp[numbers[i]]++;
+            m.insert({numbers[i],i+1});
+
+        }
+      for(int i = 0; i <numbers.size() ; i++)
+        {
+            mp[numbers[i]]--;
+            if(mp[target - numbers[i]])
+            {
+                res.push_back(i+1);
+               for(auto x :m )
+               {
+                if(x.first == (target - numbers[i]) && x.second!=i+1)
+                {
+                    res.push_back(x.second);
+                    break;
+                }
+
+               }
+                break;
+            }
+            else{
+                 mp[numbers[i]]++;
+            }
+        }
+        return res;
+        
+    }
+};
