@@ -25,8 +25,9 @@ https://leetcode.com/studyplan/top-interview-150/
 | Roman Integer                                  | ✅ |
 | Rotate Array                                   | ✅ |
 | Zigzag Conversion                              | ✅ |
+| Candy                                          | ✅ |
 
-**Total Completed:** 21/24 ✅
+**Total Completed:** 22/24 ✅
 
 ---
 
