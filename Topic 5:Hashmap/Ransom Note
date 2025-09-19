@@ -1,1 +1,23 @@
 
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        map<char ,int>m,mo;
+        for(auto x: magazine)
+        {
+            m[x]++;
+        }
+        for(auto x: ransomNote)
+        {
+            mo[x]++;
+        }
+        for(auto x:mo)
+        {
+            if(m[x.first]<x.second)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
