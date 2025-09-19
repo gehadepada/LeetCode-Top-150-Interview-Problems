@@ -1,0 +1,114 @@
+class Solution {
+public:
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        vector<string> res;
+        string s = "";
+        int sz = 0;
+        vector<pair<int, int>> space;
+        int num = 0;
+        for (int i = 0; i < words.size(); i++) {
+            if (words[i].size() + s.size() <= maxWidth) {
+
+                s += words[i];
+                num++;
+                if (s.size() < maxWidth) {
+                    s.push_back(' ');
+                }
+
+            } else {
+                sz = maxWidth - s.size();
+
+                if (s[s.size() - 1] == ' ') {
+                    s.pop_back();
+                    sz++;
+                }
+
+                space.push_back({sz, num - 1});
+                num = 0;
+                res.push_back(s);
+                s = words[i];
+                num++;
+                if (s.size() < maxWidth) {
+                    s.push_back(' ');
+                }
+            }
+        }
+        sz = maxWidth - s.size();
+
+        if (s[s.size() - 1] == ' ') {
+            s.pop_back();
+            sz++;
+        }
+        space.push_back({sz, num - 1});
+        res.push_back(s);
+        int div = 0;
+        string g = "";
+        string spaces = "";
+        
+        for (int i = 0; i < res.size(); i++) {
+            if (space[i].first == 0) {
+                continue;
+            }
+            int k = 0;
+          
+            if (space[i].second != 0 && (space[i].first >= space[i].second) &&i!=res.size()-1){
+              
+                div = space[i].first / space[i].second;
+            }
+            else{
+                div = space[i].first;
+                k=1;
+            }
+            g = "";
+            cout<<div<<" "<<k<<" "<<res[i]<<endl;
+           
+            spaces = string(div, ' ');
+            if (i == res.size() - 1) {
+                res[i] += spaces;
+                continue;
+            }
+            int flag = 0;
+       
+           if(k==0){
+            for (int j = 0; j < res[i].size(); j++) {
+                if (res[i][j] == ' ') {
+                    g.push_back(' ');
+                    g += spaces;
+                    flag = 1;
+
+                } else {
+                    g.push_back(res[i][j]);
+                }
+            }
+            res[i] = g;
+            if (flag == 0) {
+                res[i] += spaces;
+            }
+           }
+            g = "";
+            flag = 0;
+            if (res[i].size() < maxWidth) {
+                div = maxWidth - (res[i].size());
+                for (auto x : res[i]) {
+                    if (x == ' ') {
+                        g.push_back(' ');
+                        if (div != 0) {
+
+                            g.push_back(' ');
+                            div--;
+                        }
+                    } else {
+                        g.push_back(x);
+                    }
+                }
+                res[i] = g;
+                spaces=string(div,' ');
+                if(res[i].size() <maxWidth)
+                {
+                    res[i]+=spaces;
+                }
+            }
+        }
+        return res;
+    }
+};
