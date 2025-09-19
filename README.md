@@ -26,8 +26,10 @@ https://leetcode.com/studyplan/top-interview-150/
 | Rotate Array                                   | ✅ |
 | Zigzag Conversion                              | ✅ |
 | Candy                                          | ✅ |
+| Text Justification                             | ✅ |
+| Trapping Rain Water                            | ✅ |
 
-**Total Completed:** 22/24 ✅
+**Total Completed:** 24/24 ✅
 
 ---
 
