@@ -1,0 +1,23 @@
+class Solution {
+public:
+    static bool sortbyCond(const pair<int, int>& a, const pair<int, int>& b) {
+        if (a.first != b.first)
+            return (a.first < b.first);
+        else
+            return (a.second < b.second);
+    }
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        vector<pair<int, int>> v;
+        for (int i = 0; i < nums.size(); i++) {
+            v.push_back({nums[i], i + 1});
+        }
+        sort(v.begin(), v.end(), sortbyCond);
+        for (int i = 1; i < v.size(); i++) {
+            if (v[i].first == v[i - 1].first &&
+                abs(v[i].second - v[i - 1].second) <= k) {
+                return true;
+            }
+        }
+        return false;
+    }
+};
