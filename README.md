@@ -1,5 +1,8 @@
 # 📌 LeetCode Top 150 Interview Problems
 https://leetcode.com/studyplan/top-interview-150/
+
+---
+
 ## Topic 1: Array-String
 
 | Problem Name                                   | Status |
@@ -44,3 +47,21 @@ https://leetcode.com/studyplan/top-interview-150/
 | Valid Palindrome                             | ✅ |
 
 **Total Completed:** 5/5 ✅
+
+---
+
+## Topic 5: Hashmap
+
+| Problem Name                     | Status |
+|----------------------------------|---------|
+| Contains Duplicate II            | ✅ |
+| Group Anagrams                   | ✅ |
+| Happy Number                     | ✅ |
+| Isomorphic Strings               | ✅ |
+| Longest Consecutive Sequence     | ✅ |
+| Ransom Note                      | ✅ |
+| Two Sum                          | ✅ |
+| Valid Anagram                    | ✅ |
+| Word Pattern                     | ✅ |
+
+**Total Completed:** 9/9 ✅
