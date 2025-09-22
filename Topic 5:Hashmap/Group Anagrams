@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        vector<pair<string, int>> v;
+        string x = "";
+        for (int i = 0; i < strs.size(); i++) {
+            x = strs[i];
+            sort(x.begin(), x.end());
+            v.push_back({x, i});
+        }
+        sort(v.begin(), v.end());
+        vector<vector<string>> res;
+        vector<string> k;
+        k.push_back(strs[v[0].second]);
+        for (int i = 1; i < v.size(); i++) {
+            if (v[i].first == v[i - 1].first) {
+                k.push_back(strs[v[i].second]);
+            } else {
+                res.push_back(k);
+                k.clear();
+                k.push_back(strs[v[i].second]);
+            }
+        }
+        res.push_back(k);
+        return res;
+    }
+};
