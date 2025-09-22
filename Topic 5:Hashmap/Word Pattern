@@ -1,0 +1,49 @@
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        string ss = "";
+        string g = "";
+        char x = '1';
+        map<string, char> m;
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] != ' ') {
+                g.push_back(s[i]);
+            } else {
+                if (m[g] == 0) {
+                    ss.push_back(x);
+                    m[g] = x;
+                    x++;
+
+                } else {
+                    ss.push_back(m[g]);
+                }
+                g = "";
+            }
+        }
+        if (g != "") {
+            if (m[g] == 0) {
+                ss.push_back(x);
+                m[g] = x;
+                x++;
+
+            } else {
+                ss.push_back(m[g]);
+            }
+        }
+        x = '1';
+        map<char, char> mp;
+
+        for (auto& k : pattern) {
+            if (mp[k] == 0) {
+                mp[k] = x;
+                k = x;
+                x++;
+
+            } else {
+                k = mp[k];
+            }
+        }
+
+        return (ss == pattern);
+    }
+};
