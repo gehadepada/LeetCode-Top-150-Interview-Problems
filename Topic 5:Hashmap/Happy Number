@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isHappy(int n) {
+        int digit = 0, newNum = 0;
+        map<int, int> mp;
+        while (true) {
+            while (n > 0) {
+                digit = n % 10;
+                newNum += pow(digit, 2);
+
+                n /= 10;
+            }
+            n = newNum;
+            mp[n]++;
+            if (n == 1)
+                return true;
+            else if (mp[n] >= 2)
+                return false;
+            newNum = 0;
+        }
+    }
+};
