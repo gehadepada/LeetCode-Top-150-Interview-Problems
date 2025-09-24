@@ -1,0 +1,47 @@
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        unordered_map<char, int> ss, tt;
+    
+        for (auto x : t) {
+            tt[x]++;
+        }
+        
+        int l = 0, r = 0;
+        int mini = INT_MAX;
+        int matched = 0; 
+        string res = "";
+        int ll= 0 ,rr=-1;
+        
+        while (r < s.size()) {
+            char rightChar = s[r];
+            if (tt.count(rightChar)) {
+                ss[rightChar]++;
+                if (ss[rightChar] == tt[rightChar]) {
+                    matched++;
+                }
+            }
+            
+            while (matched == tt.size()) { 
+                if (r - l + 1 < mini) {
+                    mini = r - l + 1;
+                    ll=l,rr=r;
+                }
+                
+                char leftChar = s[l];
+                if (tt.count(leftChar)) {
+                    ss[leftChar]--;
+                    if (ss[leftChar] < tt[leftChar]) {
+                        matched--;
+                    }
+                }
+                l++;
+            }
+            
+            r++;
+        }
+        
+      if(rr!=-1) res = s.substr(ll  , rr-ll+1); else res= "";
+     return res;
+    }
+};
