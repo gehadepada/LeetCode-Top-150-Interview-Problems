@@ -1,0 +1,60 @@
+#define ll long long
+class Solution {
+public:
+    vector<int> findSubstring(string s, vector<string>& words) {
+        ll allSz = words.size() * words[0].size();
+        map<string, int> m;
+        vector<int> res;
+      
+        for (auto x : words) {
+            m[x]++;
+        }
+        
+        int n = words[0].size();
+        for (int offset = 0; offset < n; offset++) {
+            int l = offset, r = offset;
+            string current = "";
+            map<string, int> mp;
+            
+            while (r < s.size()) {
+                current.push_back(s[r]);
+                
+                if (current.size() < n) {
+                    r++;
+                } else {
+                    if (m.count(current)) {
+                        mp[current]++;
+                        
+                        while (mp[current] > m[current]) {
+                            string leftWord = s.substr(l, n);
+                            mp[leftWord]--;
+                            if (mp[leftWord] == 0) {
+                                mp.erase(leftWord);
+                            }
+                            l += n;
+                        }
+                        if (r - l + 1 == allSz) {
+                            res.push_back(l);
+                            string leftWord = s.substr(l, n);
+                            mp[leftWord]--;
+                            if (mp[leftWord] == 0) {
+                                mp.erase(leftWord);
+                            }
+                            l += n;
+                        }
+                        
+                        r++;
+                        current = "";
+                    } else {
+                        mp.clear();
+                        r++;
+                        l = r;
+                        current = "";
+                    }
+                }
+            }
+        }
+        
+        return res;
+    }
+};
