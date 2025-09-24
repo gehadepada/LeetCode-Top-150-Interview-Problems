@@ -1,10 +1,7 @@
 # 📌 LeetCode Top 150 Interview Problems
 https://leetcode.com/studyplan/top-interview-150/
-
 ---
-
 ## Topic 1: Array-String
-
 | Problem Name                                   | Status |
 |------------------------------------------------|---------|
 | Best Time to Buy and Sell Stock                 | ✅ |
@@ -31,13 +28,9 @@ https://leetcode.com/studyplan/top-interview-150/
 | Candy                                          | ✅ |
 | Text Justification                             | ✅ |
 | Trapping Rain Water                            | ✅ |
-
 **Total Completed:** 24/24 ✅
-
 ---
-
 ## Topic 2: Two Pointer
-
 | Problem Name                                | Status |
 |---------------------------------------------|---------|
 | 3Sum                                         | ✅ |
@@ -45,13 +38,18 @@ https://leetcode.com/studyplan/top-interview-150/
 | Is Subsequence                               | ✅ |
 | Two Sum II - Input Array Is Sorted           | ✅ |
 | Valid Palindrome                             | ✅ |
-
 **Total Completed:** 5/5 ✅
-
 ---
-
+## Topic 3: Sliding Window
+| Problem Name                                | Status |
+|---------------------------------------------|---------|
+| Longest Substring Without Repeating Characters | ✅ |
+| Minimum Size Subarray Sum                    | ✅ |
+| Minimum Window Substring                     | ✅ |
+| Substring with Concatenation of All Words    | ✅ |
+**Total Completed:** 4/4 ✅
+---
 ## Topic 5: Hashmap
-
 | Problem Name                     | Status |
 |----------------------------------|---------|
 | Contains Duplicate II            | ✅ |
@@ -63,5 +61,4 @@ https://leetcode.com/studyplan/top-interview-150/
 | Two Sum                          | ✅ |
 | Valid Anagram                    | ✅ |
 | Word Pattern                     | ✅ |
-
 **Total Completed:** 9/9 ✅
