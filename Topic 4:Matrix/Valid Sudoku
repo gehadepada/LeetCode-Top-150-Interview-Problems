@@ -1,1 +1,61 @@
 
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        int n = board.size();
+        int m = board[0].size();
+        char current ;
+        int i =0 , j = 0 ;
+        while(i<=6)
+        {
+            map<char , int>mp ;
+            for(int row = i ; row<i+3 ; row ++)
+            {
+                for(int col = j ; col < j +3 ; col++)
+                {
+                    if(mp[board[row][col]] && board[row][col]!='.')
+                    {
+                      
+                        return false;
+                    }
+                    mp[board[row][col]]++;
+                     
+                }
+            }
+            j+=3;
+            if(j==9)
+            {
+                j=0;
+                i+=3;
+            }
+        }
+        
+        for(int i = 0 ; i < n ; i++)
+        {
+            for(int j = 0; j < m; j++)
+            {
+                current = board[i][j];
+                if(current!='.'){
+                for(int x = 0 ; x < m ; x ++)
+                {
+                    if(board[i][x] == current && x!=j)
+                    {
+                        return false;
+                    }
+                }
+                for(int x =0 ; x < n ; x ++)
+                {
+                    if(board[x][j] == current && x!=i)
+                    {
+                        return false;
+                    }
+                    
+                }
+                }
+                
+            }
+        }
+        return true;
+        
+    }
+};
