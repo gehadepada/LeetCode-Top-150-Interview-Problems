@@ -1,0 +1,79 @@
+class Solution {
+public:
+    string simplifyPath(string path) {
+        int end = path.size();
+
+        stack<char> st;
+        st.push(path[0]);
+        int dot = 0;
+        for (int i = 1; i < end; i++) {
+            if (path[i] == '.') {
+                dot++;
+            } else {
+                if (dot >= 3 || (dot <= 2 && (i-dot-1 >=0 &&(path[i-dot-1] != '/' || path[i]!='/')))) {
+                    while (dot--) {
+                        st.push('.');
+                    }
+
+                } else if (dot == 2 && st.size() > 1) {
+                    if (st.top() != '/') {
+                        while (dot--) {
+                            st.push('.');
+                        }
+
+                    } else {
+                        st.pop();
+                        while (!st.empty() && st.top() != '/') {
+                            st.pop();
+                        }
+                    }
+                }
+                if (path[i] != '/' && path[i] != '.') {
+                    st.push(path[i]);
+                } else {
+                    if (!st.empty() && path[i] != st.top() && path[i] != '.') {
+                        st.push(path[i]);
+                    }
+                    if (st.empty() && path[i] != '.') {
+                        st.push(path[i]);
+                    }
+                }
+                dot = 0;
+            }
+        }
+        if (dot >= 3) {
+
+            while (dot--) {
+                st.push('.');
+            }
+        }
+        if (dot == 2 && st.size() > 1) {
+            if (st.top() != '/') {
+                while (dot--) {
+                    st.push('.');
+                }
+
+            } else {
+                st.pop();
+                while (!st.empty() && st.top() != '/') {
+                    st.pop();
+                }
+            }
+        }
+        if(dot==1 && path.size()>=2 && path[path.size()-2]!='/')
+        {
+            st.push('.');
+        }
+        string res = "";
+        if (st.size() > 1 && st.top() == '/') {
+            st.pop();
+        }
+        while (!st.empty()) {
+            res.push_back(st.top());
+            st.pop();
+        }
+
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
