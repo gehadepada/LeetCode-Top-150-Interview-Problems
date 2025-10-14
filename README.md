@@ -62,3 +62,13 @@ https://leetcode.com/studyplan/top-interview-150/
 | Valid Anagram                    | ✅ |
 | Word Pattern                     | ✅ |
 **Total Completed:** 9/9 ✅
+---
+## Topic 6: Intervals
+| Problem Name                               | Status |
+| ------------------------------------------ | ------ |
+| Insert Interval                            | ✅      |
+| Merge Intervals                            | ✅      |
+| Minimum Number of Arrows to Burst Balloons | ✅      |
+| Summary Ranges                             | ✅      |
+| **Total Completed:** 4/4 ✅                 |        |
+
