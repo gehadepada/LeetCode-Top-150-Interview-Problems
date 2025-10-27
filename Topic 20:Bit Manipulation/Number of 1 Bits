@@ -1,0 +1,20 @@
+class Solution {
+public:
+int converDecimalToBinary(int num)
+   {
+    int res=0;
+    while(num > 0 )
+    {
+        if((num&1))
+        {
+           res++;
+        }
+        
+        num/=2;
+    }
+    return res;
+   }
+    int hammingWeight(int n) {
+        return converDecimalToBinary(n);
+    }
+};
