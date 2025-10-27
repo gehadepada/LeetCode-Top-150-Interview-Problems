@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+#define ll long long
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        int n = min((int)a.size(), (int)b.size());
+        int m =max((int)a.size(), (int)b.size());
+        string zero(m-n , '0');
+        if(a.size() == n)
+        {
+            a=zero+a;
+
+        }
+        else{
+            b=zero+b;
+        }
+        cout<<a<<" "<<b<<endl;
+        string res = "";
+        int rem = 0;
+        for (int i = m - 1; i >= 0; i--) {
+            if (a[i] == '1' && b[i] == '1') {
+                if (rem == 1) {
+                    res.push_back('1');
+
+                } else {
+                    rem = 1;
+                    res.push_back('0');
+                }
+            } else {
+                if (rem == 1) {
+                    if (a[i] == '1' || b[i] == '1') {
+                        res.push_back('0');
+                    }
+                    else{
+                        res.push_back('1');
+                        rem=0;
+
+                    }
+                }
+                else{
+                res.push_back(max(a[i], b[i]));
+                }
+            }
+        }
+        if(rem == 1)
+        {
+            res.push_back('1');
+        }
+        reverse(res.begin() , res.end());
+        return res;
+
+    }
+};
