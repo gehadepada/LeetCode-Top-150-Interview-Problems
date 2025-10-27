@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        map<int,int>ma;
+        for(int i=0;i<nums.size();i++)
+        {
+            ma[nums[i]]++;
+        }
+        int res=0;
+        for(auto x:ma)
+        {
+            if(x.second==1)
+            {res=x.first;
+            break;
+            }
+        }
+        return res;
+        
+    }
+};
