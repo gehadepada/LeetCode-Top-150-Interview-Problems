@@ -1,0 +1,42 @@
+#define ll long long 
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int>st;
+        ll first , second;
+        for(int i =0 ;i < tokens.size() ; i ++) 
+        {
+            if(tokens[i]!="/" &&  tokens[i]!="*" && tokens[i]!="+" && tokens[i]!="-")
+            {
+
+                st.push(stoi( tokens [i]));
+            }
+            else{
+                first =  st.top();
+                st.pop();
+                second = st.top();
+                st.pop();
+                if(tokens[ i ] == "/")
+                {
+                    
+                    st.push(second/first);
+                    cout<<st.top();
+                }
+                else if(tokens[ i ] == "+")
+                {
+                    st.push(first + second);
+                }
+                else if(tokens[ i ] == "*")
+                {
+                    st.push(first * second);
+                }
+                else{
+                    st.push(second-first);
+                }
+
+            }
+
+        }
+        return st.top();
+    }
+};
