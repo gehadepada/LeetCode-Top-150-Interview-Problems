@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int last = digits[digits.size() - 1];
+        int digit = 0;
+        deque<int> d;
+        int carry = (digits[digits.size() - 1] + 1) / 10;
+        if (last == 9) {
+            digits[digits.size() - 1] = 0;
+            for (int i = digits.size() - 2; i >= 0; i--) {
+                digit = (digits[i] + carry);
+                digits[i] = (digit % 10);
+                carry = digit / 10;
+            }
+
+        } else {
+            digits[digits.size() - 1] += 1;
+        }
+        for (auto x : digits) {
+            d.push_back(x);
+        }
+        if (carry == 1) {
+            d.push_front(1);
+        }
+        digits.clear();
+        for (auto x : d) {
+            digits.push_back(x);
+        }
+        return digits;
+    }
+};
