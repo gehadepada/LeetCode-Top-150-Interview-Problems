@@ -1,74 +1,95 @@
 # 📌 LeetCode Top 150 Interview Problems
 https://leetcode.com/studyplan/top-interview-150/
+
 ---
+
 ## Topic 1: Array-String
 | Problem Name                                   | Status |
-|------------------------------------------------|---------|
-| Best Time to Buy and Sell Stock                 | ✅ |
-| Best Time to Buy and Sell Stock II              | ✅ |
+|------------------------------------------------|--------|
+| Best Time to Buy and Sell Stock                | ✅ |
+| Best Time to Buy and Sell Stock II             | ✅ |
 | Find the Index of the First Occurrence in a String | ✅ |
-| Gas Station                                    | ✅ |
-| H-Index                                        | ✅ |
+| Gas Station                                     | ✅ |
+| H-Index                                         | ✅ |
 | Insert Delete GetRandom O(1)                    | ✅ |
-| Integer to Roman                               | ✅ |
-| Jump Game                                      | ✅ |
-| Jump Game II                                   | ✅ |
-| Length of Last Word                            | ✅ |
-| Longest Common Prefix                          | ✅ |
-| Majority Element                               | ✅ |
-| Merge Sorted Array                             | ✅ |
-| Product of Array Except Self                   | ✅ |
+| Integer to Roman                                | ✅ |
+| Jump Game                                       | ✅ |
+| Jump Game II                                    | ✅ |
+| Length of Last Word                             | ✅ |
+| Longest Common Prefix                           | ✅ |
+| Majority Element                                | ✅ |
+| Merge Sorted Array                              | ✅ |
+| Product of Array Except Self                    | ✅ |
 | Remove Duplicates from Sorted Array             | ✅ |
 | Remove Duplicates from Sorted Array II          | ✅ |
-| Remove Element                                 | ✅ |
-| Reverse Words in a String                      | ✅ |
-| Roman Integer                                  | ✅ |
-| Rotate Array                                   | ✅ |
-| Zigzag Conversion                              | ✅ |
-| Candy                                          | ✅ |
-| Text Justification                             | ✅ |
-| Trapping Rain Water                            | ✅ |
+| Remove Element                                  | ✅ |
+| Reverse Words in a String                       | ✅ |
+| Roman Integer                                   | ✅ |
+| Rotate Array                                    | ✅ |
+| Zigzag Conversion                               | ✅ |
+| Candy                                           | ✅ |
+| Text Justification                              | ✅ |
+| Trapping Rain Water                             | ✅ |
 **Total Completed:** 24/24 ✅
+
 ---
+
 ## Topic 2: Two Pointer
 | Problem Name                                | Status |
-|---------------------------------------------|---------|
+|---------------------------------------------|--------|
 | 3Sum                                         | ✅ |
 | Container With Most Water                    | ✅ |
 | Is Subsequence                               | ✅ |
 | Two Sum II - Input Array Is Sorted           | ✅ |
 | Valid Palindrome                             | ✅ |
 **Total Completed:** 5/5 ✅
+
 ---
+
 ## Topic 3: Sliding Window
-| Problem Name                                | Status |
-|---------------------------------------------|---------|
+| Problem Name                                  | Status |
+|-----------------------------------------------|--------|
 | Longest Substring Without Repeating Characters | ✅ |
-| Minimum Size Subarray Sum                    | ✅ |
-| Minimum Window Substring                     | ✅ |
-| Substring with Concatenation of All Words    | ✅ |
+| Minimum Size Subarray Sum                      | ✅ |
+| Minimum Window Substring                       | ✅ |
+| Substring with Concatenation of All Words      | ✅ |
 **Total Completed:** 4/4 ✅
+
 ---
+
+## Topic 4: Matrix
+| Problem Name       | Status |
+|--------------------|--------|
+| Game of Life       | ✅ |
+| Rotate Image       | ✅ |
+| Set Matrix Zeroes  | ✅ |
+| Spiral Matrix      | ✅ |
+| Valid Sudoku       | ✅ |
+**Total Completed:** 5/5 ✅
+
+---
+
 ## Topic 5: Hashmap
-| Problem Name                     | Status |
-|----------------------------------|---------|
-| Contains Duplicate II            | ✅ |
-| Group Anagrams                   | ✅ |
-| Happy Number                     | ✅ |
-| Isomorphic Strings               | ✅ |
-| Longest Consecutive Sequence     | ✅ |
-| Ransom Note                      | ✅ |
-| Two Sum                          | ✅ |
-| Valid Anagram                    | ✅ |
-| Word Pattern                     | ✅ |
+| Problem Name                    | Status |
+|---------------------------------|--------|
+| Contains Duplicate II           | ✅ |
+| Group Anagrams                  | ✅ |
+| Happy Number                    | ✅ |
+| Isomorphic Strings              | ✅ |
+| Longest Consecutive Sequence    | ✅ |
+| Ransom Note                     | ✅ |
+| Two Sum                         | ✅ |
+| Valid Anagram                   | ✅ |
+| Word Pattern                    | ✅ |
 **Total Completed:** 9/9 ✅
+
 ---
+
 ## Topic 6: Intervals
 | Problem Name                               | Status |
-| ------------------------------------------ | ------ |
-| Insert Interval                            | ✅      |
-| Merge Intervals                            | ✅      |
-| Minimum Number of Arrows to Burst Balloons | ✅      |
-| Summary Ranges                             | ✅      |
-| **Total Completed:** 4/4 ✅                 |        |
-
+|--------------------------------------------|--------|
+| Insert Interval                            | ✅ |
+| Merge Intervals                            | ✅ |
+| Minimum Number of Arrows to Burst Balloons | ✅ |
+| Summary Ranges                             | ✅ |
+**Total Completed:** 4/4 ✅
