@@ -1,0 +1,52 @@
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node* next;
+
+    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val, Node* _left, Node* _right, Node* _next)
+        : val(_val), left(_left), right(_right), next(_next) {}
+};
+*/
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+        deque<Node*> d, res;
+        if (root != nullptr) {
+            d.push_back(root);
+        }
+        while (!d.empty()) {
+            int sz = d.size();
+            while (sz--) {
+                if (d.front()->left != nullptr) {
+                    d.push_back(d.front()->left);
+                    res.push_back(d.front()->left);
+                }
+                if (d.front()->right != nullptr) {
+                    d.push_back(d.front()->right);
+                    res.push_back(d.front()->right);
+                }
+
+                d.pop_front();
+            }
+            res.push_back(new Node(-101));
+        }
+        while (!res.empty()) {
+            auto x = res.front();
+            res.pop_front();
+            if (res.size() >= 1 && res.front()->val != -101 && x->val != -101) {
+                x->next = res.front();
+            }
+        }
+
+        return root;
+    }
+};
