@@ -1,0 +1,62 @@
+class Solution {
+public:
+    void solve(vector<vector<char>>& board) {
+        int n = board.size();
+        int m = board[0].size();
+        deque<pair<int, int>> d;
+        int cnt = 0;
+        int sz, i, j;
+        vector<pair<int, int>> v;
+
+        for (int ii = n - 1; ii >= 0; ii--) {
+            for (int jj = m - 1; jj >= 0; jj--) {
+                if (board[ii][jj] == 'O' &&
+                    (ii == 0 || jj == 0 || ii == n - 1 || jj == m - 1)) {
+                    d.push_back({ii, jj});
+                }
+            }
+        }
+
+        while (!d.empty()) {
+            i = d.front().first;
+            j = d.front().second;
+            board[i][j] = 'a';
+            if (i + 1 < n) {
+                if (board[i + 1][j] == 'O') {
+                    d.push_back({i + 1, j});
+                }
+            }
+            if (j + 1 < m) {
+                if (board[i][j + 1] == 'O') {
+
+                    d.push_back({i, j + 1});
+                }
+            }
+            if (i - 1 >= 0) {
+                if (board[i - 1][j] == 'O') {
+
+                    d.push_back({i - 1, j});
+                }
+            }
+            if (j - 1 >= 0) {
+                if (board[i][j - 1] == 'O') {
+
+                    d.push_back({i, j - 1});
+                }
+            }
+
+            d.pop_front();
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (board[i][j] == 'a') {
+                    board[i][j] = 'O';
+                } else {
+                    if (board[i][j] == 'O') {
+                        board[i][j] = 'X';
+                    }
+                }
+            }
+        }
+    }
+};
