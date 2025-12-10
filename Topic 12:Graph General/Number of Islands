@@ -1,0 +1,52 @@
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        deque<pair<int, int>> d;
+        int cnt = 0;
+        int sz, i, j;
+        vector<pair<int, int>> v;
+
+        for (int ii = 0; ii < n; ii++) {
+            for (int jj = 0; jj < m; jj++) {
+                if (grid[ii][jj] == '1') {
+                    v.push_back({ii, jj});
+                }
+            }
+        }
+        for (auto x : v) {
+            if (grid[x.first][x.second] == '1') {
+                d.push_back({x.first, x.second});
+                cnt++;
+                while (!d.empty()) {
+                    sz = d.size();
+                    while (sz--) {
+                        i = d.front().first;
+                        j = d.front().second;
+                        grid[i][j] = '0';
+                        if (i + 1 < n && grid[i + 1][j] == '1') {
+                            grid[i + 1][j] = '0';
+                            d.push_back({i + 1, j});
+                        }
+                        if (j + 1 < m && grid[i][j + 1] == '1') {
+                            grid[i][j + 1] = '0';
+                            d.push_back({i, j + 1});
+                        }
+                        if (i - 1 >= 0 && grid[i - 1][j] == '1') {
+                            grid[i - 1][j] = '0';
+                            d.push_back({i - 1, j});
+                        }
+                        if (j - 1 >= 0 && grid[i][j - 1] == '1') {
+                            grid[i][j - 1] = '0';
+                            d.push_back({i, j - 1});
+                        }
+                        d.pop_front();
+                    }
+                }
+            }
+        }
+
+        return cnt;
+    }
+};
