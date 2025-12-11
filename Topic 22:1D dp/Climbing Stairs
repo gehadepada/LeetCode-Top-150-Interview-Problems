@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int tryAll(int n, vector<int>& dp, int i) {
+        if (i == n) {
+            return 1;
+        }
+        if (dp[i] != -1) {
+            return dp[i];
+        }
+        int one = 0;
+        if (i + 1 <= n)
+            one = tryAll(n, dp, i + 1);
+        int two = 0;
+        if (i + 2 <= n)
+            two = tryAll(n, dp, i + 2);
+        return dp[i] = one + two;
+    }
+    int climbStairs(int n) {
+        vector<int> dp(n + 1, -1);
+        return tryAll(n, dp, 0);
+    }
+};
