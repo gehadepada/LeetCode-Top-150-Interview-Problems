@@ -1,0 +1,36 @@
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        if((int)prerequisites.size() == 0)
+        {
+            return true;
+        }
+        vector<int> indegree(numCourses+1);
+        vector<vector<int>> adj(numCourses+1);
+        set<int>st;
+        for (auto x : prerequisites) {
+            indegree[x[0]]++;
+            adj[x[1]].push_back(x[0]);
+        }
+        deque<int> d;
+          int cnt = 0;
+        for (int i =0 ;i<numCourses;i++) {
+
+            if (indegree[i] == 0) {
+                d.push_back(i);
+            }
+        }
+                while (!d.empty()) {
+                    cnt++;
+                    int takenCourse = d.front();
+                    d.pop_front();
+                    for (auto adg : adj[takenCourse]) {
+                        indegree[adg]--;
+                        if (indegree[adg] == 0) {
+                            d.push_back(adg);
+                        }
+                    }
+                }
+        return cnt == numCourses;
+    }
+};
