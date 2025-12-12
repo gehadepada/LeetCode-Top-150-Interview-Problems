@@ -1,0 +1,33 @@
+class Solution {
+public:
+     bool solve(string s , vector<int>&dp ,vector<string>& wordDict  , int  index )
+     {
+        if(index == s.size())
+        {
+            return true;
+        }
+        if(dp[index] !=-1)
+        {
+            return dp[index];
+        }
+        for(int i = 0 ; i < wordDict.size() ; i++)
+        {
+            if((index+ wordDict[i].size())<= s.size() && s.substr(index , wordDict[i].size()) == wordDict[i])
+            {
+                if(solve( s , dp , wordDict  , index+(int)wordDict[i].size()))
+                {
+                    return  dp[index] = true;
+                }
+            }
+            
+        }
+        return  dp[index] = false;
+
+
+     }
+    bool wordBreak(string s, vector<string>& wordDict) {
+        vector<int>dp((int)s.size() , -1);
+        return solve(s, dp , wordDict , 0);
+        
+    }
+};
