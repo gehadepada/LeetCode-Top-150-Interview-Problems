@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minimumTotal(vector<vector<int>>& triangle) {
+        int n = triangle.size();
+        vector<vector<int>> dp(n, vector<int>(n, -1));
+        int first = triangle[0][0];
+        int second = triangle[0][0];
+        dp[0][0] = first;
+        int j = 1;
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < triangle[i].size(); j++) {
+                first = (j < triangle[i - 1].size()) ? dp[i - 1][j] : INT_MAX;
+                second = (j - 1 >= 0) ? dp[i - 1][j - 1] : INT_MAX;
+                dp[i][j] = triangle[i][j] + min(first, second);
+            }
+        }
+        int res = INT_MAX;
+        for (int j = 0; j < n; j++)
+            res = min(res, dp[n - 1][j]);
+        return res;
+    }
+};
