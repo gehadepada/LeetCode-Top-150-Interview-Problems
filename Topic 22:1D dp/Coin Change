@@ -1,0 +1,28 @@
+class Solution {
+    int solve(vector<int>& coins, int amount,  vector<int>& dp) {
+        if (amount == 0) {
+            return 0;
+        }
+        if (dp[amount] != -1) {
+            return dp[amount];
+        }
+        int mini= 1e9;
+        for (int i = 0; i < coins.size(); i++) {
+            if (amount - coins[i] >= 0) {
+                mini=min(mini,1+solve(coins, amount - coins[i], dp));
+            }
+        }
+
+        return dp[amount] = mini;
+    }
+
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        vector<int>dp(amount + 1, -1);
+        int y = solve(coins, amount, dp);
+        if (y == 1e9) {
+            return -1;
+        }
+        return y;
+    }
+};
