@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int solve(vector<int>& nums , vector<vector<int>>& dp , int i ,int j )
+    {
+        if(i>= nums.size())
+        {
+            return 0 ;
+        }
+        if(j !=-1 && dp[i][j] !=-1)
+        {
+            return dp[i][j];
+        }
+        int take = 0 ,  notTake = 0;
+        if((j != -1 && nums[i] >nums[j]) || j ==-1)
+        {
+          take = 1 + solve(nums , dp , i+1 , i );
+        }
+        notTake = solve(nums , dp , i+1 , j);
+        return dp[i][max(0 ,j)]=max(take , notTake);
+    }
+    int lengthOfLIS(vector<int>& nums) {
+        int n=nums.size();
+        vector<vector<int>>dp(n+1, vector<int>(n+1 , -1));
+        return solve(nums,dp , 0 , -1);
+        
+    }
+};
