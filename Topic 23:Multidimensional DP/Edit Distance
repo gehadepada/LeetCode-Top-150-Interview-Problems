@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int tryAll(string word1, string word2, int i, int j,
+               vector<vector<int>>& dp) {
+        if (i >= word1.size() && j >= word2.size()) {
+            return 0;
+        }
+        if (i == word1.size())
+            return word2.size() - j; 
+        if (j == word2.size())
+            return word1.size() - i; 
+
+        if (dp[i][j] != -1) {
+            return dp[i][j];
+        }
+        int remove1 = 1e9, remove2 = 1e9, replace = 1e9, move = 1e9;
+        if (word1[i] != word2[j]) {
+            remove1 = 1 + tryAll(word1, word2, i + 1, j, dp);
+            remove2 = 1 + tryAll(word1, word2, i, j + 1, dp);
+            replace = 1 + tryAll(word1, word2, i + 1, j + 1, dp);
+        } else {
+            move = tryAll(word1, word2, i + 1, j + 1, dp);
+        }
+        return dp[i][j] = min({remove1, remove2, replace, move});
+    }
+    int minDistance(string word1, string word2) {
+        vector<vector<int>> dp(word1.size() + 1, vector<int>(word2.size(), -1));
+        return tryAll(word1, word2, 0, 0, dp);
+    }
+};
