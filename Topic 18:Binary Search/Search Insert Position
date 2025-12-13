@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        int index = lower_bound(nums.begin() , nums.end() ,target )-nums.begin();
+        if(index >=0 && index<nums.size())
+        {
+            if(nums[index] == target)
+            {
+                return index;
+            }
+            else{
+                return index;
+            }
+        }
+        return nums.size();
+        
+    }
+};
