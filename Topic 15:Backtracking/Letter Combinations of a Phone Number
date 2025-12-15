@@ -1,0 +1,31 @@
+class Solution {
+public:
+    void solve(int index, vector<vector<char>>& adj, string current,string digits, vector<string>& res) {
+        if (index >= digits.size()) {
+            res.push_back(current);
+            return;
+        }
+        for (auto charc : adj[digits[index] - '0']) {
+
+            solve(index + 1, adj, current+=charc, digits, res);
+            current.pop_back();
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        vector<vector<char>> adj(10);
+        vector<string> r;
+        int a = 97;
+        for (int i = 2; i <= 9; i++) {
+            for (int j = 1; j <= 3; j++) {
+                adj[i].push_back((char)a);
+                a++;
+            }
+            if (i == 7 || i == 9) {
+                adj[i].push_back((char)a);
+                a++;
+            }
+        }
+        solve(0, adj, "", digits, r);
+        return r;
+    }
+};
