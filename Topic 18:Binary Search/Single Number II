@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int num = nums[0];
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i < nums.size(); i += 3) {
+            if (i + 2 < (nums.size()) && (nums[i] != nums[i + 2])) {
+                num = nums[i];
+                break;
+            } else if (i + 2 >= nums.size()) {
+                num = nums[i];
+                break;
+            }
+        }
+        return num;
+    }
+};
