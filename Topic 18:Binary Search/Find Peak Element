@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        int l = 0 , r = nums.size()-1;
+        int n =nums.size();
+       int y;
+        while(l<=r)
+        {
+            int m = (l+r)/2;
+            if(m -1<0 && m+1>=nums.size())
+            {
+                y=m;
+                break;
+            }
+            else if(m+1 < n && nums[m+1] >= nums[m])
+            {
+                l=m+1;
+            }
+            else if(m-1>=0 &&nums[m-1] >= nums[m])
+            {
+                r=m-1;
+            }
+            else if(m-1>=0&&nums[m]> nums[m-1] && m+1<n&& nums[m]>nums[m+1])
+            {
+                y=m;
+                break;
+            }
+            else if(m-1<0 && m+1<n && nums[m] > nums[m+1])
+            {
+                y=m;
+                break;
+            }
+            else if(m-1>=0 && m+1>=n && nums[m] > nums[m-1])
+            {
+                y=m;
+                break;
+            }
+
+        }
+        return y;
+        
+    }
+};
