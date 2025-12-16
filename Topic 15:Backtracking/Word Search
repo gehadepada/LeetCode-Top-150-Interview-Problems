@@ -1,0 +1,42 @@
+class Solution {
+public:
+    bool solve(vector<vector<char>>& board, string word, int i, int j, int n,
+               int m, int index) {
+        if (index >= (int)word.size()) {
+            return true;
+        }
+        if (i >= n || j >= m || i < 0 || j < 0) {
+            return false;
+        }
+        if (board[i][j] != word[index]) {
+            return false;
+        }
+        int temp = board[i][j];
+        board[i][j] = '#';
+            index++;
+        
+
+        bool find = solve(board, word, i + 1, j, n, m, index) ||
+                    solve(board, word, i, j + 1, n, m, index) ||
+                    solve(board, word, i - 1, j, n, m, index) ||
+                    solve(board, word, i, j - 1, n, m, index);
+        board[i][j] = temp;
+        return find;
+    }
+
+    bool exist(vector<vector<char>>& board, string word) {
+        int n = board.size();
+        int m = board[0].size();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(solve(board, word, i, j,n,m, 0))
+                {
+                    return true;
+                }
+               
+            }
+        
+        }
+        return false;
+    }
+};
