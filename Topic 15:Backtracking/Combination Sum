@@ -1,0 +1,23 @@
+class Solution {
+    public:
+        void solve(int start , int n, vector<int>&candidates , int target, vector<vector<int>>& res, vector<int> v , int sum) {
+            if (sum == target) {
+                res.push_back(v);
+                return;
+            }
+            for (int i = start; i <n ;  i++) {
+                if(sum+candidates[i]<=target){
+                v.push_back(candidates[i]);
+                solve(i ,n, candidates,target, res, v,sum+=candidates[i]);
+                sum-=v.back();
+                v.pop_back();
+                }
+            }
+        }
+        vector<vector<int>> combinationSum(vector<int>& candidates,int target) {
+            vector<vector<int>> res;
+            vector<int> v;
+            solve(0,(int)candidates.size(), candidates,target, res, v , 0 );
+            return res;
+        }
+    };
