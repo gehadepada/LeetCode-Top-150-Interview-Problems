@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int countDiff(string gene, string x) {
+        int c = 0;
+        for (int i = 0; i < gene.size(); i++) {
+            if (gene[i] != x[i]) {
+                c++;
+            }
+        }
+        return c;
+    }
+    int mini(string startGene, string endGene, vector<string>& bank) {
+       unordered_set<string> st(bank.begin(), bank.end());
+        if (!st.count(endGene)) return -1;
+
+        deque<pair<string, int>> d;
+        unordered_set<string> visited;
+        visited.insert(startGene);
+        d.push_back({startGene, 0});
+
+        while (!d.empty()) {
+            string gene = d.front().first;
+            int step = d.front().second;
+            d.pop_front();
+            if (gene == endGene) {
+                return step;
+            }
+            for (auto x : bank) {
+                if (visited.count(x)==0 && countDiff(gene, x) == 1) {
+                    visited.insert(x);
+                    d.push_back({x, step + 1});
+                }
+            }
+        }
+        return -1;
+    }
+    int minMutation(string startGene, string endGene, vector<string>& bank) {
+        return mini(startGene, endGene, bank);
+    }
+};
