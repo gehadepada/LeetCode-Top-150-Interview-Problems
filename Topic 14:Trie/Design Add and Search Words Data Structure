@@ -1,0 +1,62 @@
+class WordDictionary {
+public:
+    bool isEnd;
+    WordDictionary* childern[26];
+    WordDictionary() {
+        isEnd = false;
+        for (int i = 0; i < 26; i++) {
+            childern[i] = nullptr;
+        }
+    }
+
+    void addWord(string word) {
+        WordDictionary* root = this;
+        for (auto x : word) {
+            int index = x - 'a';
+            if (!root->childern[index]) {
+                root->childern[index] = new WordDictionary();
+            }
+            root = root->childern[index];
+        }
+        root->isEnd = true;
+    }
+
+    bool search(string word) {
+        WordDictionary* root = this;
+        int n = word.size();
+        return searchDfs(0, n, word, root);
+    }
+    bool searchDfs(int i, int n, string& word, WordDictionary* root) {
+        if (!root)
+            return false;
+        if (i >= n) {
+            return root->isEnd;
+        }
+        int index = word[i] - 'a';
+        int l = false, r = false;
+        if (word[i] != '.') {
+            if (root->childern[index] == nullptr) {
+                return false;
+            }
+            if (searchDfs(i + 1, n, word, root->childern[index])) {
+                return true;
+            }
+        } else {
+            for (int j = 0; j < 26; j++) {
+                if (root->childern[j] != nullptr) {
+                    if (searchDfs(i + 1, n, word, root->childern[j])) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};
+
+/**
+ * Your WordDictionary object will be instantiated and called as such:
+ * WordDictionary* obj = new WordDictionary();
+ * obj->addWord(word);
+ * bool param_2 = obj->search(word);
+ */
