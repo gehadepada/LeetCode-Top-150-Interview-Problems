@@ -1,0 +1,59 @@
+class Trie {
+public:
+    bool isEnd;
+    Trie* childern[26];
+    Trie() {
+        isEnd = false;
+        for (int i = 0; i < 26; i++) {
+            childern[i] = nullptr;
+        }
+    }
+
+    void insert(string word) {
+         Trie* node = this;
+        for (auto c : word) {
+            int index = c - 'a';
+            if (!node->childern[index]) {
+                node->childern[index] = new Trie();
+            }
+            node = node->childern[index];
+        }
+            node->isEnd= true;
+    }
+
+    bool search(string word) {
+         Trie* node=this;
+        for( auto c : word)
+        {
+            int index = c- 'a';
+            if(!node->childern[index])
+            {
+                return false;
+            }
+            node=node->childern[index];
+        }
+        return node->isEnd;
+    }
+
+    bool startsWith(string prefix) {
+         Trie* node =this;
+        for( auto c : prefix)
+        {
+            int index = c- 'a';
+            if(!node->childern[index])
+            {
+                return false;
+            }
+            node=node->childern[index];
+        }
+        return true;
+    }
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
