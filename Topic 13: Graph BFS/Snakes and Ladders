@@ -1,0 +1,53 @@
+class Solution {
+public:
+    int snakesAndLadders(vector<vector<int>>& board) {
+        int n = board.size();
+        int mm = board[0].size();
+        map<int, pair<int, int>> m;
+        int num = 1;
+        int flag = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            if (flag) {
+                for (int j = 0; j < mm; j++) {
+                    m[num] = {i, j};
+                    num++;
+                }
+                flag = 0;
+            } else {
+                for (int j = mm - 1; j >= 0; j--) {
+                    m[num] = {i, j};
+                    num++;
+                }
+                flag = 1;
+            }
+        }
+
+        deque<pair<int, int>> d;
+        d.push_back({1, 0});
+        int nn = n * n;
+        vector<bool> vis(nn + 1, 0);
+        vis[1]=true;
+        while (!d.empty()) {
+            auto [cur, step] = d.front();
+            // cout<<cur<<endl;
+            d.pop_front();
+            if ((cur == nn)) {
+                return step;
+              
+            }
+            for (int i = 1; i <= 6 && cur + i <= nn; i++) {
+                if (vis[(cur + i)] == 0) {
+                    vis[cur+i]=true;
+                    auto [ii, j] = m[cur + i];
+                    if (board[ii][j] == -1) {
+                        d.push_back({cur + i, step + 1});
+
+                    } else {
+                        d.push_back({board[ii][j], step + 1});
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+};
