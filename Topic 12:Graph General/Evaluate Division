@@ -1,0 +1,79 @@
+class Solution {
+public:
+    bool dfs(vector<vector<int>> adj, int from, int to, double& res,
+             vector<int>& vis, map<pair<int, int>, double> m) {
+        if (from == to) {
+            return true;
+        }
+        vis[from] = true;
+        for (auto x : adj[from]) {
+            if (vis[x] == 1)
+                continue;
+            double prev = res;
+            res *= (m[{from, x}]);
+            if (dfs(adj, x, to, res, vis, m)) {
+                return true;
+            }
+            res = prev;
+        }
+
+        return false;
+    }
+    vector<double> calcEquation(vector<vector<string>>& equations,
+                                vector<double>& values,
+                                vector<vector<string>>& queries) {
+        int n = equations.size();
+        vector<double> res;
+        map<pair<int, int>, double> m;
+        int first, second;
+        map<string, int> code;
+        int i = 0;
+        for (auto x : equations) {
+            if (!code.count(x[0])) {
+                code[x[0]] = i;
+                i++;
+            }
+            if (!code.count(x[1])) {
+                code[x[1]] = i;
+                i++;
+            }
+        }
+
+        vector<vector<int>> adj(i + 1);
+        for (int i = 0; i < n; i++) {
+            first = code[equations[i][0]];
+            second = code[equations[i][1]];
+            adj[first].push_back(second);
+            adj[second].push_back(first);
+            m[{first, second}] = values[i];
+            m[{second, first}] = 1 / values[i];
+        }
+
+        for (auto x : queries) {
+            if (code.count(x[0]) == 0 || code.count(x[1]) == 0) {
+                res.push_back(-1.00000);
+                continue;
+            }
+            vector<int> vis(i, 0);
+            double r = 1;
+            if(m.count({code[x[0]] ,code[x[1]]}))
+            {
+                res.push_back(m[{code[x[0]], code[x[1]]}]);
+
+            }
+            else if(code[x[0]]==code[x[1]])
+            {
+                res.push_back(1.00000);
+            }
+            else{
+                if(dfs(adj, code[x[0]], code[x[1]], r, vis, m)){
+                res.push_back(r);
+                }
+                else{
+                    res.push_back(-1.00000);
+                }
+            }
+        }
+        return res;
+    }
+};
