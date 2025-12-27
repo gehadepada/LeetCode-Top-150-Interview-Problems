@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void solve(string cur, vector<string>& res, int open, int close, int n) {
+        if (open > n || close > n) {
+            return;
+        }
+        if (open == n && close == n) {
+            res.push_back(cur);
+            return;
+        }
+        cur.push_back('(');
+        solve(cur, res, open + 1, close, n);
+        cur.pop_back();
+        if (close < open) {
+            cur.push_back(')');
+            solve(cur, res, open, close + 1, n);
+            cur.pop_back();
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        solve("", res, 0, 0, n);
+        return res;
+    }
+};
