@@ -1,0 +1,67 @@
+/*
+// Definition for a QuadTree node.
+class Node {
+public:
+    bool val;
+    bool isLeaf;
+    Node* topLeft;
+    Node* topRight;
+    Node* bottomLeft;
+    Node* bottomRight;
+
+    Node() {
+        val = false;
+        isLeaf = false;
+        topLeft = NULL;
+        topRight = NULL;
+        bottomLeft = NULL;
+        bottomRight = NULL;
+    }
+
+    Node(bool _val, bool _isLeaf) {
+        val = _val;
+        isLeaf = _isLeaf;
+        topLeft = NULL;
+        topRight = NULL;
+        bottomLeft = NULL;
+        bottomRight = NULL;
+    }
+
+    Node(bool _val, bool _isLeaf, Node* _topLeft, Node* _topRight, Node*
+_bottomLeft, Node* _bottomRight) { val = _val; isLeaf = _isLeaf; topLeft =
+_topLeft; topRight = _topRight; bottomLeft = _bottomLeft; bottomRight =
+_bottomRight;
+    }
+};
+*/
+
+class Solution {
+public:
+    bool sameType(int r, int c, int n, vector<vector<int>>& grid) {
+        int first = grid[r][c];
+        for (int i = r; i < r + n; i++) {
+            for (int j = c; j < c + n; j++) {
+                if (grid[i][j] != first) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    Node* build(int r, int c, int n, vector<vector<int>>& grid) {
+        if (sameType(r, c, n, grid)) {
+            return new Node(grid[r][c] == 1, 1);
+        }
+        int half = n / 2;
+        Node* topLeft = build(r, c, half, grid);
+        Node* topRight = build(r, c + half, half, grid);
+        Node* bottomLeft = build(r + half, c, half, grid);
+        Node* bottomRight = build(r + half, c + half, half, grid);
+        return new Node(true, false, topLeft, topRight, bottomLeft,
+                        bottomRight);
+    }
+    Node* construct(vector<vector<int>>& grid) {
+        int n = grid.size();
+        return build(0, 0, n, grid);
+    }
+};
