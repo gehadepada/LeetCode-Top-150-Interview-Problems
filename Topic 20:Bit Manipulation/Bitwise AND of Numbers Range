@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int commonOnes(int n, int nn) {
+        int flag = 0;
+        bitset<32> num(n);
+        bitset<32> num2(nn);
+        int c = 0;
+        for (int i = 31; i >= 0; i--) {
+            if (num[i] == 1 && num2[i] == 1) {
+                c += (1 << i);
+            } else {
+                if (num[i] != num2[i]) {
+                    break;
+                }
+            }
+        }
+        return c;
+    }
+    int rangeBitwiseAnd(int left, int right) { return commonOnes(left, right); }
+};
