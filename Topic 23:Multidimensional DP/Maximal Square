@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int m, n;
+    vector<vector<int>> memo;
+    vector<vector<char>> mat;
+    int best = 0;
+
+    int dfs(int i, int j) {
+        if (i >= m || j >= n) return 0;
+        if (mat[i][j] == '0') return 0;
+
+        if (memo[i][j] != -1)
+            return memo[i][j];
+
+        int down = dfs(i + 1, j);
+        int right = dfs(i, j + 1);
+        int diag = dfs(i + 1, j + 1);
+
+        int res = 1 + min({down, right, diag});
+        best = max(best, res);
+
+        return memo[i][j] = res;
+    }
+
+    int maximalSquare(vector<vector<char>>& matrix) {
+        mat = matrix;
+        m = matrix.size();
+        n = matrix[0].size();
+
+        memo.assign(m, vector<int>(n, -1));
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                dfs(i, j);
+            }
+        }
+
+        return best * best;
+    }
+};
