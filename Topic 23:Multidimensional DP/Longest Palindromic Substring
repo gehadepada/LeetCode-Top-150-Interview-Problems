@@ -1,0 +1,36 @@
+class Solution {
+public:
+    string s;
+    int n;
+    vector<vector<int>> dp;
+    bool isPal(int l, int r) {
+        if (l >= r) return true;          
+        if (dp[l][r] != -1) return dp[l][r];
+
+        if (s[l] != s[r])
+            return dp[l][r] = false;
+
+        return dp[l][r] = isPal(l + 1, r - 1);
+    }
+
+    string longestPalindrome(string str) {
+        s = str;
+        n = s.size();
+        dp.assign(n, vector<int>(n, -1));
+
+        int start = 0, maxLen = 1;
+        for (int l = 0; l < n; l++) {
+            for (int r = l; r < n; r++) {
+                if (isPal(l, r)) {
+                    int len = r - l + 1;
+                    if (len > maxLen) {
+                        maxLen = len;
+                        start = l;
+                    }
+                }
+            }
+        }
+
+        return s.substr(start, maxLen);
+    }
+};
