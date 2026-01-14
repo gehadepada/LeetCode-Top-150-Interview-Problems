@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> prices;
+    int n;
+    int dp[100005][3][2];
+
+    int dfs(int day, int trans, int holding) {
+        if (day == n || trans == 2)
+            return 0;
+        int &res = dp[day][trans][holding];
+        if (res != -1)
+            return res;
+
+        if (holding == 0) {
+            int buy = -prices[day] + dfs(day + 1, trans, 1);
+            int skip = dfs(day + 1, trans, 0);
+            res = max(buy, skip);
+        } else {
+            int sell = prices[day] + dfs(day + 1, trans + 1, 0);
+            int hold = dfs(day + 1, trans, 1);
+            res = max(sell, hold);
+        }
+
+        return res;
+    }
+
+    int maxProfit(vector<int>& p) {
+        prices = p;
+        n = prices.size();
+        memset(dp, -1, sizeof(dp));
+        return dfs(0, 0, 0);
+    }
+};
