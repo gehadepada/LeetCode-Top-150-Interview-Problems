@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int n;
+    vector<int> prices;
+    vector<vector<vector<int>>> memo;
+
+    int dfs(int i, int k, int holding) {
+        if (i == n) return 0;
+        if (k == 0 && holding == 0) return 0;
+        if (k == 0 && holding == 1) return -1e9;
+
+        if (memo[i][k][holding] != -1)
+            return memo[i][k][holding];
+
+        int ans;
+        if (holding == 0) {
+            ans = max(
+                dfs(i + 1, k, 0),
+                -prices[i] + dfs(i + 1, k, 1)
+            );
+        } else {
+            ans = max(
+                dfs(i + 1, k, 1),
+                prices[i] + dfs(i + 1, k - 1, 0)
+            );
+        }
+
+        return memo[i][k][holding] = ans;
+    }
+
+    int maxProfit(int k, vector<int>& p) {
+        prices = p;
+        n = prices.size();
+
+        memo.assign(n, vector<vector<int>>(k + 1, vector<int>(2, -1)));
+
+        return dfs(0, k, 0);
+    }
+};
