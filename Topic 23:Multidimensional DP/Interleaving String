@@ -1,0 +1,33 @@
+class Solution {
+public:
+    string s1, s2, s3;
+    vector<vector<int>> dp;
+    bool dfs(int i, int j) {
+        if (i == s1.size() && j == s2.size())
+            return true;
+
+        if (dp[i][j] != -1)
+            return dp[i][j];
+
+        int k =i+j;
+
+        bool ok =false;
+        if (i < s1.size() && s1[i] == s3[k])
+            ok = dfs(i + 1, j);
+
+        if (!ok && j < s2.size() && s2[j] == s3[k])
+            ok = dfs(i, j + 1);
+
+        return dp[i][j] = ok;
+    }
+
+    bool isInterleave(string a, string b, string c) {
+        s1 = a; s2 = b; s3 = c;
+
+        if (s1.size() + s2.size() != s3.size())
+            return false;
+
+        dp.assign(s1.size() + 1, vector<int>(s2.size() + 1, -1));
+        return dfs(0, 0);
+    }
+};
